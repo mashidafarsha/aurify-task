@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, DollarSign, Scale, TrendingUp, TrendingDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 import Navbar from '../components/Navbar';
 
 const TradeLedger = () => {
@@ -40,10 +40,10 @@ const TradeLedger = () => {
 
         // Fetching clients from dedicated dropdown endpoint (Admin + Trader)
         const [clientsRes, tradesRes] = await Promise.all([
-          axios.get('http://localhost:5001/api/trades/active-clients', { 
+          API.get('/trades/active-clients', { 
             headers: { Authorization: `Bearer ${token}` } 
           }),
-          axios.get('http://localhost:5001/api/trades', { 
+          API.get('/trades', { 
             headers: { Authorization: `Bearer ${token}` } 
           })
         ]);
@@ -75,7 +75,7 @@ const TradeLedger = () => {
 
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('http://localhost:5001/api/trades', formData, {
+      const response = await API.post('/trades', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

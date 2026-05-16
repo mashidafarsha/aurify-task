@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Lock, Shield, ArrowRight, AlertCircle, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -44,7 +44,7 @@ const Register = () => {
 
     try {
       console.log('Sending Registration Payload:', { name, email, password, role });
-      const response = await axios.post('http://localhost:5001/api/auth/register', {
+      const response = await API.post('/auth/register', {
         name,
         email,
         password,

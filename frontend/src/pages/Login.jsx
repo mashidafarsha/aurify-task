@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/auth/login', {
+      const response = await API.post('/auth/login', {
         email,
         password,
       });

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Briefcase, TrendingUp, DollarSign, Users, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
@@ -30,7 +30,7 @@ const Dashboard = () => {
           }
         }
 
-        const response = await axios.get('http://localhost:5001/api/dashboard/summary', {
+        const response = await API.get('/dashboard/summary', {
           headers: { Authorization: `Bearer ${token}` }
         });
         

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, User, Phone, Mail, Trash2, Edit2, X, AlertTriangle, Activity } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 import Navbar from '../components/Navbar';
 
 const ClientList = () => {
@@ -43,7 +43,7 @@ const ClientList = () => {
           }
         }
 
-        const response = await axios.get('http://localhost:5001/api/clients', {
+        const response = await API.get('/clients', {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -90,12 +90,12 @@ const ClientList = () => {
     const token = localStorage.getItem('token');
     try {
       if (editingClientId) {
-        const response = await axios.put(`http://localhost:5001/api/clients/${editingClientId}`, formData, {
+        const response = await API.put(`/clients/${editingClientId}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setClients(clients.map(c => c._id === editingClientId ? response.data : c));
       } else {
-        const response = await axios.post('http://localhost:5001/api/clients', formData, {
+        const response = await API.post('/clients', formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setClients([response.data, ...clients]);
@@ -112,7 +112,7 @@ const ClientList = () => {
     if (!clientToDelete) return;
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5001/api/clients/${clientToDelete}`, {
+      await API.delete(`/clients/${clientToDelete}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setClients(clients.filter(c => c._id !== clientToDelete));

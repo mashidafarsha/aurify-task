@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { User, Phone, Mail, Clock, TrendingUp, TrendingDown, ArrowLeft, Briefcase, ChevronRight } from 'lucide-react';
-import axios from 'axios';
+import API from '../api/axios';
 import Navbar from '../components/Navbar';
 
 const ClientProfile = () => {
@@ -23,7 +23,7 @@ const ClientProfile = () => {
           setUserRole(decodedPayload.role);
         }
 
-        const response = await axios.get(`http://localhost:5001/api/clients/${id}/profile`, {
+        const response = await API.get(`/clients/${id}/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProfileData(response.data);
