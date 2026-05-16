@@ -15,9 +15,9 @@ connectDB();
 
 const app = express();
 
-// 1. CORS Middleware
+// 1. CORS Middleware (Permissive for production)
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://127.0.0.1:5173', 'http://127.0.0.1:5174'],
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
