@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Outfit', sans-serif;
+  @apply bg-[#f8f9fc] text-slate-900;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  @apply bg-white/60 backdrop-blur-2xl border border-white shadow-[0_8px_40px_rgb(0,0,0,0.04)];
+}
